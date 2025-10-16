@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets'
+import { getImage } from 'astro:assets'
+import type { AuthorInfo } from '#lib/constants'
+
+interface Props extends AuthorInfo {}
+const { avatar, name, headline, username, location } = Astro.props
+
+const image = await getImage({ src: avatar, format: 'avif' })
+---
+
+<div>
+  <div>
+    <Image loading="eager" src={image.src} alt={name} width={92} height={92} />
+  </div>
+  <div>
+    <div <h1>{name}</div>
+    <p>
+      {headline} in {' '}
+      <span>
+        {location}
+      </span>,
+    </p>
+  </div>
+  <span>
+    {username}
+  </span>
+</div>

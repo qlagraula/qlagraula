@@ -1,0 +1,54 @@
+---
+import { getEntry } from 'astro:content'
+import BaseLayout from '#layouts/BaseLayout.astro'
+import Container from '#components/Container.astro'
+
+const entry = await getEntry('pages', '404')
+---
+
+<BaseLayout seo={entry?.data.seo}>
+  <Container as="section">
+    <div>
+      <div>
+        <h1>404</h1>
+        <div>
+          <h2>
+            {entry?.data.title}
+          </h2>
+          <p>
+            {entry?.data.description}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <a href="/">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Go Home
+        </a>
+
+        <a href="/writing">
+          Browse Writing
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+
+      <p>
+        If you believe this is an error, please check the URL or try refreshing
+        the page.
+      </p>
+    </div>
+  </Container>
+</BaseLayout>

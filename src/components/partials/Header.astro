@@ -1,0 +1,23 @@
+---
+import Container from '#components/Container.astro'
+
+const pathname = Astro.url.pathname
+
+const isHomePage = pathname === '/'
+const isWritingPage = pathname.startsWith('/writing')
+---
+
+<Container as="header">
+  <div>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/writing">Writing</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</Container>

@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets'
+import { getImage } from 'astro:assets'
+import { DEFAULT_CONFIGURATION } from '#lib/constants'
+
+const image = await getImage({
+  src: DEFAULT_CONFIGURATION.author.avatar,
+  format: 'avif',
+})
+---
+
+<div>
+  <Image
+    loading="eager"
+    src={image.src}
+    alt={DEFAULT_CONFIGURATION.author.name}
+    width={52}
+    height={52}
+  />
+</div>

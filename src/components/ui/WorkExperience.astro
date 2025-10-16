@@ -1,0 +1,27 @@
+---
+import { render, type CollectionEntry } from 'astro:content'
+
+interface Props {
+  entry: CollectionEntry<'jobs'>
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+---
+
+<li>
+  <div>
+    <div>
+      <span>{entry.data.from} - {entry.data.to}</span>
+    </div>
+    <div>
+      <div>
+        <span>{entry.data.title}</span>
+        <span>{entry.data.company}</span>
+      </div>
+      <div>
+        <Content />
+      </div>
+    </div>
+  </div>
+</li>

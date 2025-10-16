@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { formatDate } from '#lib/utils'
+import { render } from 'astro:content'
+interface Props {
+  entry: CollectionEntry<'posts'>
+}
+
+const { entry } = Astro.props
+const { remarkPluginFrontmatter } = await render(entry)
+---
+
+<li <div>
+  <div>
+    <span>{formatDate(entry.data.date)}</span>
+  </div>
+  <a href={`/writing/${entry.id}/`}>
+    <div>
+      <span>{entry.data.title}</span>
+      <span>{remarkPluginFrontmatter.minutesRead}</span>
+    </div>
+  </a>
+</li>

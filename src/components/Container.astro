@@ -1,0 +1,16 @@
+---
+import type { Polymorphic } from 'astro/types'
+
+type LayoutTag = 'section' | 'div' | 'article' | 'header' | 'footer' | 'code'
+
+type Props<Tag extends LayoutTag> = Polymorphic<{
+  as: Tag
+  class?: string
+}>
+
+const { as: Tag = 'div' } = Astro.props as Props<LayoutTag>
+---
+
+<Tag>
+  <slot />
+</Tag>
