@@ -4,6 +4,7 @@ import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { remarkReadingTime } from './src/lib/remark.mjs';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,7 +16,7 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [],
+    plugins: [tailwindcss()],
   },
   integrations: [
     react(),
