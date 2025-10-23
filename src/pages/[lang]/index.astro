@@ -6,9 +6,8 @@ import { DEFAULT_CONFIGURATION } from '#lib/constants'
 import Contact from '#components/ui/Contact.astro'
 import Experience from '#components/ui/Experience.astro'
 import { languages } from '#i18n/ui'
-import { getEntry } from 'astro:content'
-import { render } from 'astro:content'
 import { getLangFromUrl } from '#i18n/utils'
+import { getEntry, render } from 'astro:content'
 
 export async function getStaticPaths() {
   return languages.map((lang) => ({ params: { lang } }))

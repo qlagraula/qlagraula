@@ -37,7 +37,6 @@ const linkCollection = defineCollection({
 });
 
 const jobCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/jobs' }),
   schema: z.object({
     title: z.string(),
     company: z.string(),
@@ -50,7 +49,6 @@ const jobCollection = defineCollection({
 });
 
 const postCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/posts' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),

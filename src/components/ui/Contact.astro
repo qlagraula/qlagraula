@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content'
+
+const links = await getCollection('links')
+---
+
+{
+  links.length > 0 && (
+    <section>
+      <h2>Contact</h2>
+      <ul class="p-0 flex flex-col gap-4">
+        {links.map((link) => (
+          <li class="flex not-prose max-md:flex-col items-baseline">
+            <span class="md:min-w-40 opacity-75 text-sm">
+              {link.data.label}
+            </span>
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              class="link link-hover text-base-content font-semibold"
+              href={link.data.url}
+            >
+              {link.data.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

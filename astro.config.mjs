@@ -9,6 +9,11 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://qlagraula.github.io',
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['fr', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
   markdown: {
     remarkPlugins: [remarkReadingTime],
     shikiConfig: {

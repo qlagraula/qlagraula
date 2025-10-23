@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content'
+
+import WorkExperience from '#components/ui/WorkExperience.astro'
+import { sortJobsByDate } from '#lib/utils'
+import { getLangFromUrl, useTranslations } from '#i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const jobs = await getCollection('jobs', ({ id }) => id.startsWith(lang))
+const t = useTranslations(lang)
+
+const sortedJobs = sortJobsByDate(jobs)
+---
+
+{
+  sortedJobs.length > 0 && (
+    <section>
+      <h2>{t('experience.title')}</h2>
+      <ul class="p-0 flex flex-col gap-4">
+        {sortedJobs.map((job, index) => (
+          <>
+            <WorkExperience entry={job} />
+            {index + 1 !== sortedJobs.length && <div class="divider m-0" />}
+          </>
+        ))}
+      </ul>
+    </section>
+  )
+}

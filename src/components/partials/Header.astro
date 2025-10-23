@@ -1,29 +1,40 @@
 ---
 import SwitchTheme from '#components/SwitchTheme'
+import SwitchLang from '#components/SwitchLang'
+
+import { getLangFromUrl } from '#i18n/utils'
 import { getCollection } from 'astro:content'
+import { getRelativeLocaleUrl } from 'astro:i18n'
 
 const pathname = Astro.url.pathname
 const posts = await getCollection('posts')
+const lang = getLangFromUrl(Astro.url)
 
 const LINKS = [
-  { href: '/', label: 'Home', active: pathname === '/' },
   {
-    href: '/articles',
+    href: getRelativeLocaleUrl(lang, ''),
+    label: 'Home',
+    active: pathname === getRelativeLocaleUrl(lang, ''),
+  },
+  {
+    href: getRelativeLocaleUrl(lang, 'articles'),
     label: 'Articles',
-    active: pathname.startsWith('/article'),
+    active: pathname.startsWith(getRelativeLocaleUrl(lang, 'articles')),
   },
 ] as const satisfies {
   label: string
   href: string
   active: boolean
 }[]
+
+const showLinks = posts.length > 0
 ---
 
 <header>
   <div class="navbar gap-1">
     <div class="navbar-start max-sm:flex-1 gap-1">
       {
-        posts.length > 0 && (
+        showLinks && (
           <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost sm:hidden">
               <svg
@@ -64,7 +75,7 @@ const LINKS = [
     <div class="navbar-center hidden sm:flex">
       <ul class="menu menu-horizontal px-1">
         {
-          posts.length > 0 &&
+          showLinks &&
             LINKS.map(({ label, href, active }) => (
               <li>
                 <a
@@ -79,7 +90,8 @@ const LINKS = [
         }
       </ul>
     </div>
-    <div class="navbar-end max-sm:w-fit">
+    <div class="navbar-end max-sm:w-fit gap-2">
+      <SwitchLang client:only="react" />
       <SwitchTheme client:only="react" />
     </div>
   </div>
