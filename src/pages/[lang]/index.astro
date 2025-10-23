@@ -6,7 +6,7 @@ import { DEFAULT_CONFIGURATION } from '#lib/constants'
 import Contact from '#components/ui/Contact.astro'
 import Experience from '#components/ui/Experience.astro'
 import { languages } from '#i18n/ui'
-import { getLangFromUrl } from '#i18n/utils'
+import { getLangFromUrl, useTranslations } from '#i18n/utils'
 import { getEntry, render } from 'astro:content'
 
 export async function getStaticPaths() {
@@ -14,6 +14,8 @@ export async function getStaticPaths() {
 }
 
 const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
 const entry = await getEntry('pages', `homepage/${lang}`)
 
 if (!entry) {
@@ -29,7 +31,7 @@ const { Content } = await render(entry)
   </section>
 
   <section>
-    <h2>About</h2>
+    <h2>{t('about')}</h2>
 
     <Content />
   </section>

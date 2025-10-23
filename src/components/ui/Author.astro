@@ -2,9 +2,13 @@
 import { Image } from 'astro:assets'
 import { getImage } from 'astro:assets'
 import type { AuthorInfo } from '#lib/constants'
+import { getLangFromUrl, useTranslations } from '#i18n/utils'
 
 interface Props extends AuthorInfo {}
-const { avatar, name, headline, username, location } = Astro.props
+const { avatar, name } = Astro.props
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 
 const image = await getImage({ src: avatar, format: 'avif' })
 ---
@@ -23,9 +27,9 @@ const image = await getImage({ src: avatar, format: 'avif' })
     <div>
       <h1 class="m-0!">{name}</h1>
       <p class="m-0!">
-        {headline} in {' '}
+        {t('headline')}
         <span>
-          {location}
+          {t('location')}
         </span>
       </p>
     </div>

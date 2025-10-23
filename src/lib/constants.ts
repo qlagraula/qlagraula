@@ -7,13 +7,10 @@ import astroConfig from 'astro.config.mjs';
 export type AuthorInfo = {
   name: string;
   avatar: any;
-  headline: string;
-  username?: string;
-  location?: string;
 };
 
 export type Seo = z.infer<typeof seoSchemaWithoutImage> & {
-  image?: any;
+  image?: ImageMetadata;
 };
 
 type DefaultConfigurationType = {
@@ -22,14 +19,11 @@ type DefaultConfigurationType = {
   seo: Seo;
 };
 
-export const DEFAULT_CONFIGURATION: DefaultConfigurationType = {
-  baseUrl: astroConfig.site || 'https://quentin.com',
+export const DEFAULT_CONFIGURATION = {
+  baseUrl: astroConfig.site || 'https://qlagraula.github.io',
   author: {
     avatar,
     name: 'Quentin Lagraula',
-    headline: 'Fullstack Developer',
-    username: 'qlagraula',
-    location: 'Bordeaux',
   },
   seo: {
     title: 'Quentin Lagraula - Fullstack Developer',
@@ -38,5 +32,6 @@ export const DEFAULT_CONFIGURATION: DefaultConfigurationType = {
     type: 'website',
     image: MetaDefaultImage,
     robots: 'noindex, nofollow',
+    keywords: 'blog, react, node, tanstack, typescript',
   },
-};
+} as const satisfies DefaultConfigurationType;

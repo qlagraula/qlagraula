@@ -1,3 +1,4 @@
+import { getLangFromUrl, useTranslations } from '#i18n/utils';
 import { useEffect, useRef, useState } from 'react';
 
 export const THEME_KEY = 'theme';
@@ -8,6 +9,9 @@ export default function SwitchTheme() {
   const [theme, setTheme] = useState<string | null>(null);
   // @ts-ignore
   const checkRef = useRef<HTMLInputElement>(!null);
+
+  const lang = getLangFromUrl(new URL(window.location.href));
+  const t = useTranslations(lang);
 
   useEffect(() => {
     const savedTheme = (() => {
@@ -50,9 +54,7 @@ export default function SwitchTheme() {
           className="outline-0"
           onChange={toggleTheme}
           checked={theme === DARK_THEME}
-          aria-label={`Switch to ${
-            !theme ? 'dark' : theme === DARK_THEME ? 'light' : 'system'
-          } theme`}
+          aria-label={t('theme.switch', { theme })}
         />
 
         <svg

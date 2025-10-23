@@ -1,13 +1,17 @@
 ---
+import { getLangFromUrl, useTranslations } from '#i18n/utils'
 import { getCollection } from 'astro:content'
 
 const links = await getCollection('links')
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 {
   links.length > 0 && (
     <section>
-      <h2>Contact</h2>
+      <h2>{t("contact")}</h2>
       <ul class="p-0 flex flex-col gap-4">
         {links.map((link) => (
           <li class="flex not-prose max-md:flex-col items-baseline">
