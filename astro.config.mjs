@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://quentin.com',
+  site: 'https://qlagraula.github.io',
   markdown: {
     remarkPlugins: [remarkReadingTime],
     shikiConfig: {
