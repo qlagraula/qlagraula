@@ -28,7 +28,7 @@ export const DEFAULT_CONFIGURATION = {
   seo: {
     title: 'Quentin Lagraula - Fullstack Developer',
     description:
-      'Clean and aesthetic portfolio website for developers and designers',
+      'Software developer with product vision, passionate about solving problems and creating the best user experiences',
     type: 'website',
     image: MetaDefaultImage,
     keywords: 'blog, react, node, tanstack, typescript',
