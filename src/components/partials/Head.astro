@@ -21,7 +21,7 @@ const seoImage = generateAbsoluteUrl(image.src)
 <head>
   <meta charset="utf-8" />
   <link rel="sitemap" href="/sitemap-index.xml" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
   {seo?.canonicalUrl && <link rel="canonical" href={seo?.canonicalUrl} />}
   <title>{seo?.title || defaultSeo.title}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,7 +34,7 @@ const seoImage = generateAbsoluteUrl(image.src)
     <meta name="keywords" content={seo?.keywords || defaultSeo.keywords} />
   </slot>
   <meta name="generator" content={Astro.generator} />
-  <meta name="robots" content={seo?.robots || defaultSeo.robots} />
+  <meta name="robots" content={seo?.robots} />
   <!-- OpenGraph Meta -->
   <meta property="og:type" content={seo?.type ?? 'website'} />
   <meta property="og:site_name" content={defaultSeo.title} />

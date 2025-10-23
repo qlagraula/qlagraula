@@ -20,7 +20,7 @@ const sortedJobs = sortJobsByDate(jobs)
         {sortedJobs.map((job, index) => (
           <>
             <WorkExperience entry={job} />
-            {index + 1 !== sortedJobs.length && <div class="divider m-0" />}
+            {index + 1 !== sortedJobs.length && <li class="divider m-0" />}
           </>
         ))}
       </ul>
