@@ -16,6 +16,7 @@ export const ui = {
       `Switch to ${
         !theme ? 'dark' : theme === 'dark' ? 'light' : 'system'
       } theme`,
+    'lang.switch': 'Change language',
     'articles.latest': 'Latest posts',
   },
   fr: {
@@ -29,6 +30,7 @@ export const ui = {
       `Basculer sur le thème ${
         !theme ? 'sombre' : theme === 'dark' ? 'clair' : 'système'
       }`,
+    'lang.switch': 'Changer de langue',
     'articles.latest': 'Derniers articles',
   },
 } as const satisfies Record<
