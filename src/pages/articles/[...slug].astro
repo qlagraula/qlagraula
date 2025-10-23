@@ -1,5 +1,4 @@
 ---
-import Container from '#components/Container.astro'
 import Avatar from '#components/ui/Avatar.astro'
 import BaseLayout from '#layouts/BaseLayout.astro'
 import { DEFAULT_CONFIGURATION } from '#lib/constants'
@@ -8,7 +7,6 @@ import { getCollection, render } from 'astro:content'
 
 export async function getStaticPaths() {
   const entries = await getCollection('posts')
-
   return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -20,7 +18,7 @@ const { Content } = await render(entry)
 ---
 
 <BaseLayout seo={entry.data.seo}>
-  <Container as="section">
+  <section class="p-8">
     <article>
       <div>
         <a href="/articles"> Back to articles </a>
@@ -41,5 +39,5 @@ const { Content } = await render(entry)
         <Content />
       </div>
     </article>
-  </Container>
+  </section>
 </BaseLayout>

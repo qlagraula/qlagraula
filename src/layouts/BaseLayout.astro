@@ -12,11 +12,11 @@ interface Props {
 const { seo } = Astro.props
 ---
 
-<html lang="en">
+<html lang="en" class="bg-base-200">
   <Head seo={seo} />
-  <body class="h-dvh flex flex-col">
+  <body class="min-h-dvh flex flex-col">
     <Header />
-    <main class="flex-1">
+    <main class="flex flex-col flex-1 p-10 prose mx-auto">
       <slot />
     </main>
     <Footer />

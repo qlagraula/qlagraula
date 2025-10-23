@@ -14,7 +14,7 @@ const { remarkPluginFrontmatter } = await render(entry)
   <div>
     <span>{formatDate(entry.data.date)}</span>
   </div>
-  <a href={`/article/${entry.id}/`}>
+  <a href={`/articles/${entry.id}/`}>
     <div>
       <span>{entry.data.title}</span>
       <span>{remarkPluginFrontmatter.minutesRead}</span>

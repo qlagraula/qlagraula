@@ -12,7 +12,10 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkReadingTime],
     shikiConfig: {
-      theme: 'gruvbox-dark-medium',
+      themes: {
+        light: 'rose-pine-dawn',
+        dark: 'rose-pine-moon',
+      },
     },
   },
   vite: {

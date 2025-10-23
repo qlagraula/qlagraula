@@ -1,8 +1,9 @@
 ---
-import Container from '#components/Container.astro'
 import SwitchTheme from '#components/SwitchTheme'
+import { getCollection } from 'astro:content'
 
 const pathname = Astro.url.pathname
+const posts = await getCollection('posts')
 
 const LINKS = [
   { href: '/', label: 'Home', active: pathname === '/' },
@@ -18,34 +19,56 @@ const LINKS = [
 }[]
 ---
 
-<Container as="header">
-  <div class="navbar bg-base-100 shadow-sm gap-1">
-    <div class="navbar-start max-lg:flex-1 gap-1">
-      <div class="dropdown">
-        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h8m-8 6h16"></path>
-          </svg>
-        </div>
-        <ul
-          tabindex="-1"
-          class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-4 w-52 p-2 shadow"
-        >
-          {
+<header>
+  <div class="navbar gap-1">
+    <div class="navbar-start max-sm:flex-1 gap-1">
+      {
+        posts.length > 0 && (
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost sm:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-2 w-52 p-2 shadow"
+            >
+              {LINKS.map(({ label, href, active }) => (
+                <li>
+                  <a
+                    class="text-sm aria-current:font-bold"
+                    href={href}
+                    aria-current={active}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+    <div class="navbar-center hidden sm:flex">
+      <ul class="menu menu-horizontal px-1">
+        {
+          posts.length > 0 &&
             LINKS.map(({ label, href, active }) => (
               <li>
                 <a
-                  class="text-sm aria-current:font-bold"
+                  class="link aria-current:font-bold"
                   href={href}
                   aria-current={active}
                 >
@@ -53,30 +76,11 @@ const LINKS = [
                 </a>
               </li>
             ))
-          }
-        </ul>
-      </div>
-      <div class="text-xl font-bold text-nowrap truncate">Quentin Lagraula</div>
-    </div>
-    <div class="navbar-center hidden lg:flex">
-      <ul class="menu menu-horizontal px-1">
-        {
-          LINKS.map(({ label, href, active }) => (
-            <li>
-              <a
-                class="link aria-current:font-bold"
-                href={href}
-                aria-current={active}
-              >
-                {label}
-              </a>
-            </li>
-          ))
         }
       </ul>
     </div>
-    <div class="navbar-end max-lg:w-fit">
+    <div class="navbar-end max-sm:w-fit">
       <SwitchTheme client:only="react" />
     </div>
   </div>
-</Container>
+</header>

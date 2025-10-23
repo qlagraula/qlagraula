@@ -1,11 +1,10 @@
 ---
 import { getEntry, getCollection, render } from 'astro:content'
 import BaseLayout from '#layouts/BaseLayout.astro'
-import Container from '#components/Container.astro'
+
 import Author from '#components/ui/Author.astro'
 import { DEFAULT_CONFIGURATION } from '#lib/constants'
 import WorkExperience from '#components/ui/WorkExperience.astro'
-import Talk from '#components/ui/Talk.astro'
 import { sortJobsByDate } from '#lib/utils'
 
 const entry = await getEntry('pages', 'homepage')
@@ -19,75 +18,55 @@ const { Content } = await render(entry)
 const links = await getCollection('links')
 const jobs = await getCollection('jobs')
 const sortedJobs = sortJobsByDate(jobs)
-const talks = await getCollection('talks')
 ---
 
 <BaseLayout seo={entry.data.seo}>
-  <Container as="section">
+  <section>
     <Author {...DEFAULT_CONFIGURATION.author} />
-  </Container>
+  </section>
 
-  <Container as="section">
-    <div>
-      <div>
-        <span>About</span>
-      </div>
-      <div>
-        <Content />
-      </div>
-    </div>
-  </Container>
+  <section>
+    <h2>About</h2>
+
+    <Content />
+  </section>
   {
     links.length > 0 && (
-      <Container as="section">
-        <div>
-          <span>Contact</span>
-          <ul>
-            {links.map((link) => (
-              <li>
-                <div>
-                  <span>{link.data.label}</span>
-                  <a
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    href={link.data.url}
-                  >
-                    {link.data.name}
-                  </a>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Container>
+      <section>
+        <h2>Contact</h2>
+        <ul class="p-0 flex flex-col gap-4">
+          {links.map((link) => (
+            <li class="flex not-prose max-md:flex-col items-baseline">
+              <span class="md:min-w-40 opacity-75 text-sm">
+                {link.data.label}
+              </span>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                class="link link-hover text-base-content font-semibold"
+                href={link.data.url}
+              >
+                {link.data.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
     )
   }
   {
     sortedJobs.length > 0 && (
-      <Container as="section">
-        <div>
-          <span>Work Experience</span>
-          <ul>
-            {sortedJobs.map((job) => (
+      <section>
+        <h2>Work Experience</h2>
+        <ul class="p-0 flex flex-col gap-4">
+          {sortedJobs.map((job, index) => (
+            <>
               <WorkExperience entry={job} />
-            ))}
-          </ul>
-        </div>
-      </Container>
-    )
-  }
-  {
-    talks.length > 0 && (
-      <Container as="section">
-        <div>
-          <span>Speaking</span>
-          <ul>
-            {talks.map((talk) => (
-              <Talk entry={talk} />
-            ))}
-          </ul>
-        </div>
-      </Container>
+              {index + 1 !== sortedJobs.length && <div class="divider m-0" />}
+            </>
+          ))}
+        </ul>
+      </section>
     )
   }
 </BaseLayout>

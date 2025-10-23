@@ -10,25 +10,24 @@ const image = await getImage({ src: avatar, format: 'avif' })
 ---
 
 <div>
-  <div class="bg-base-200">
-    <div class="hero-content flex-col lg:flex-row">
-      <Image
-        loading="eager"
-        src={image.src}
-        alt={name}
-        width={350}
-        height={350}
-        class="mask mask-decagon dark:bg-primary bg-neutral"
-      />
-      <div>
-        <h1 class="text-5xl font-bold">{name}</h1>
-        <p class="py-6">
-          {headline} in {' '}
-          <span>
-            {location}
-          </span>
-        </p>
-      </div>
+  <div class="hero-content flex-col lg:flex-row p-0">
+    <Image
+      loading="eager"
+      src={image.src}
+      alt={name}
+      width={150}
+      height={150}
+      data-theme="light"
+      class="mask mask-decagon bg-neutral"
+    />
+    <div>
+      <h1 class="m-0!">{name}</h1>
+      <p class="m-0!">
+        {headline} in {' '}
+        <span>
+          {location}
+        </span>
+      </p>
     </div>
   </div>
 </div>
