@@ -31,7 +31,6 @@ export const DEFAULT_CONFIGURATION = {
       'Clean and aesthetic portfolio website for developers and designers',
     type: 'website',
     image: MetaDefaultImage,
-    robots: 'noindex, nofollow',
     keywords: 'blog, react, node, tanstack, typescript',
   },
 } as const satisfies DefaultConfigurationType;
