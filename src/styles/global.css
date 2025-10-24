@@ -98,3 +98,16 @@ html[data-theme='dark'] .astro-code span {
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
+
+footer #wcb.carbonbadge {
+  --b1: var(--color-base-content);
+  --b2: var(--color-base-content);
+}
+
+footer #wcb #wcb_g {
+  background: transparent;
+}
+
+footer #wcb #wcb_a {
+  color: var(--color-base-300);
+}
