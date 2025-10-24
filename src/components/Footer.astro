@@ -12,7 +12,7 @@ const [linkedIn, github, email] = await Promise.all([
   class="footer footer-horizontal footer-center text-base-content border-t-2 p-10 prose mx-auto max-w-7xl"
 >
   <nav>
-    <div class="grid grid-flow-col gap-4">
+    <div class="grid grid-flow-col gap-4 items-center">
       <a href={email?.data.url} class="link">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -71,6 +71,10 @@ const [linkedIn, github, email] = await Promise.all([
           ></svg
         >
       </a>
+      <div id="ecoindex-badge"></div>
+      <script
+        src="https://cdn.jsdelivr.net/gh/cnumr/ecoindex_badge@3/assets/js/ecoindex-badge.js"
+        defer></script>
     </div>
   </nav>
 </footer>
