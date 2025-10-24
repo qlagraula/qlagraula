@@ -6,6 +6,7 @@ import astroConfig from 'astro.config.mjs';
 
 export type AuthorInfo = {
   name: string;
+  headline: string;
   avatar: any;
 };
 
@@ -24,6 +25,7 @@ export const DEFAULT_CONFIGURATION = {
   author: {
     avatar,
     name: 'Quentin Lagraula',
+    headline: 'Fullstack Developer in Bordeaux',
   },
   seo: {
     title: 'Quentin Lagraula - Fullstack Developer',

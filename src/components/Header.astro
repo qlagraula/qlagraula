@@ -2,24 +2,30 @@
 import SwitchTheme from '#components/SwitchTheme'
 import SwitchLang from '#components/SwitchLang'
 
-import { getLangFromUrl } from '#i18n/utils'
+import { getLangFromUrl, useTranslations } from '#i18n/utils'
 import { getCollection } from 'astro:content'
 import { getRelativeLocaleUrl } from 'astro:i18n'
+import { includeDraft } from '#lib/utils'
 
 const pathname = Astro.url.pathname
-const posts = await getCollection('posts')
 const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const posts = await getCollection(
+  'posts',
+  (post) => includeDraft(post.data.draft) && post.slug.includes(lang)
+)
 
 const LINKS = [
   {
     href: getRelativeLocaleUrl(lang, ''),
-    label: 'Home',
+    label: t('home.title'),
     active: pathname === getRelativeLocaleUrl(lang, ''),
   },
   {
-    href: getRelativeLocaleUrl(lang, 'articles'),
-    label: 'Articles',
-    active: pathname.startsWith(getRelativeLocaleUrl(lang, 'articles')),
+    href: getRelativeLocaleUrl(lang, 'posts'),
+    label: t('posts.title'),
+    active: pathname.startsWith(getRelativeLocaleUrl(lang, 'posts')),
   },
 ] as const satisfies {
   label: string

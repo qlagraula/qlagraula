@@ -1,9 +1,9 @@
 ---
 import '#styles/global.css'
 import { type Seo } from '#lib/constants'
-import Header from '#components/partials/Header.astro'
-import Footer from '#components/partials/Footer.astro'
-import Head from '#components/partials/Head.astro'
+import Header from '#components/Header.astro'
+import Footer from '#components/Footer.astro'
+import Head from '#components/Head.astro'
 
 interface Props {
   seo?: Seo
@@ -16,7 +16,7 @@ const { seo } = Astro.props
   <Head seo={seo} />
   <body class="min-h-dvh flex flex-col">
     <Header />
-    <main class="flex flex-col flex-1 p-10 prose mx-auto max-w-7xl">
+    <main class="flex flex-col flex-1 p-10 prose mx-auto max-w-7xl w-full">
       <slot />
     </main>
     <Footer />

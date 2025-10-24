@@ -6,8 +6,6 @@ export const defaultLang = 'fr';
 
 export const ui = {
   en: {
-    headline: 'Fullstack Developer in',
-    location: 'Bordeaux',
     about: 'About',
     contact: 'Contact',
     'experience.title': 'Work Experience',
@@ -17,11 +15,12 @@ export const ui = {
         !theme ? 'dark' : theme === 'dark' ? 'light' : 'system'
       } theme`,
     'lang.switch': 'Change language',
-    'articles.latest': 'Latest posts',
+    'home.title': 'Home',
+    'posts.title': 'Posts',
+    'posts.latest': 'Latest posts',
+    'posts.back': 'Back to articles',
   },
   fr: {
-    headline: 'Développeur Fullstack à',
-    location: 'Bordeaux',
     about: 'À propos',
     contact: 'Contact',
     'experience.title': 'Expérience',
@@ -31,7 +30,10 @@ export const ui = {
         !theme ? 'sombre' : theme === 'dark' ? 'clair' : 'système'
       }`,
     'lang.switch': 'Changer de langue',
-    'articles.latest': 'Derniers articles',
+    'home.title': 'Accueil',
+    'posts.title': 'Articles',
+    'posts.latest': 'Derniers articles',
+    'posts.back': 'Retour aux articles',
   },
 } as const satisfies Record<
   Language,

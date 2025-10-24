@@ -1,5 +1,6 @@
 import { defineCollection, type ImageFunction, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { boolean } from 'astro:schema';
 
 export const seoSchemaWithoutImage = z.object({
   title: z.string(),
@@ -22,6 +23,7 @@ const pageCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      headline: z.string().optional(),
       description: z.string().optional(),
       seo: seoSchema(image),
     }),
@@ -55,6 +57,7 @@ const postCollection = defineCollection({
       date: z.date(),
       image: image().optional(),
       seo: seoSchema(image),
+      draft: boolean().optional().default(false),
     }),
 });
 

@@ -6,10 +6,9 @@ export const formatDate = (date: Date) => {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
-    timeZone: 'UTC', // Default to UTC to prevent timezone issues
+    timeZone: 'UTC',
   });
 
-  // Ensure we're parsing the date correctly
   return formatter.format(new Date(date));
 };
 
@@ -24,12 +23,10 @@ export const includeDraft = (draft: boolean) => {
 };
 
 export const sortJobsByDate = (jobs: CollectionEntry<'jobs'>[]) => {
-  // Convert "Now" to current year, otherwise returns the year as is
   const getEndYear = (job: CollectionEntry<'jobs'>) =>
     job.data.to === 'Now' ? new Date().getFullYear() : job.data.to;
 
   return jobs.sort((current, next) => {
-    // Compare end years first, then fall back to start years if end years are equal
     const [currentEnd, nextEnd] = [getEndYear(current), getEndYear(next)];
     return nextEnd - currentEnd || next.data.from - current.data.from;
   });

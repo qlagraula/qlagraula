@@ -2,9 +2,14 @@
 import type { CollectionEntry } from 'astro:content'
 import { formatDate } from '#lib/utils'
 import { render } from 'astro:content'
+import { getLangFromUrl } from '#i18n/utils'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
 interface Props {
   entry: CollectionEntry<'posts'>
 }
+
+const lang = getLangFromUrl(Astro.url)
 
 const { entry } = Astro.props
 const { remarkPluginFrontmatter } = await render(entry)
@@ -14,7 +19,12 @@ const { remarkPluginFrontmatter } = await render(entry)
   <div>
     <span>{formatDate(entry.data.date)}</span>
   </div>
-  <a href={`/articles/${entry.id}/`}>
+  <a
+    href={getRelativeLocaleUrl(
+      lang,
+      `/posts/${entry.slug.replace(`/${lang}`, '')}/`
+    )}
+  >
     <div>
       <span>{entry.data.title}</span>
       <span>{remarkPluginFrontmatter.minutesRead}</span>
